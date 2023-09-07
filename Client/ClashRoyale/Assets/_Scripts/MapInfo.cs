@@ -25,7 +25,7 @@ public class MapInfo : MonoBehaviour {
     [SerializeField] private List<Unit> _enemyUnits = new List<Unit>();
     [SerializeField] private List<Unit> _playerUnits = new List<Unit>();
 
-    public bool TryGetNearestUnit(in Vector3 currentPosition, out Unit unit, bool enemy, out float distance) {
+    public bool TryGetNearestUnit(in Vector3 currentPosition, bool enemy, out Unit unit, out float distance) {
         List<Unit> units = enemy ? _enemyUnits : _playerUnits;
         unit = GetNearest<Unit>(currentPosition, units, out distance); 
         return unit;

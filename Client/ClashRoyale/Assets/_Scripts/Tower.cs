@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Health))]
+public class Tower : MonoBehaviour, IHealth {
+    [field: SerializeField] public Health Health { get; private set; }
+    
+    [field: SerializeField] public float Radius { get; private set; } = 2f;
 
-public class Tower : MonoBehaviour {
-    [SerializeField] private float _radius = 2f;
-
-    public float GetDistance(in Vector3 point) => Vector3.Distance(transform.position, point) - _radius;
+    public float GetDistance(in Vector3 point) => Vector3.Distance(transform.position, point) - Radius;
     
 }
