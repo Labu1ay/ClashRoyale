@@ -220,6 +220,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 48964795}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &363485822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363485823}
+  m_Layer: 0
+  m_Name: HealthUIPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &363485823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363485822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1098954160}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &482575691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482575692}
+  m_Layer: 0
+  m_Name: HealthUIPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482575692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482575691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 737846974}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &544136521
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +410,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 544136522}
+  - {fileID: 1534940424}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -363,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e7c5a7edf64f0ba09fe7b7315f2b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <_isEnemyTower>k__BackingField: 0
   <Health>k__BackingField: {fileID: 545019986}
   <Radius>k__BackingField: 2
 --- !u!114 &545019986
@@ -378,6 +442,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 10
+  _healthUIPrefab: {fileID: 6755059469781408493, guid: 54aa9fc0aeff034419ab27373b7b9a82, type: 3}
+  _healthUIPosition: {fileID: 1534940424}
 --- !u!1 &603627478
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +475,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1376408331}
+  - {fileID: 1795227797}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -424,8 +491,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e7c5a7edf64f0ba09fe7b7315f2b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <_isEnemyTower>k__BackingField: 1
   <Health>k__BackingField: {fileID: 603627481}
-  <Radius>k__BackingField: 2
+  <Radius>k__BackingField: 3
 --- !u!114 &603627481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +507,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 10
+  _healthUIPrefab: {fileID: 6755059469781408493, guid: 54aa9fc0aeff034419ab27373b7b9a82, type: 3}
+  _healthUIPosition: {fileID: 1795227797}
 --- !u!1 &610514701
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,18 +538,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd235af73a9141c6b9490c0ddeaee9ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyTowers:
-  - {fileID: 603627480}
-  - {fileID: 842622482}
-  - {fileID: 1098954161}
-  _playerTowers:
-  - {fileID: 1583306937}
-  - {fileID: 545019985}
-  - {fileID: 737846975}
-  _enemyUnits:
-  - {fileID: 1096598309}
-  _playerUnits:
-  - {fileID: 1486416595}
+  <_enemyTowers>k__BackingField: []
+  <_playerTowers>k__BackingField: []
+  <_enemyUnits>k__BackingField: []
+  <_playerUnits>k__BackingField: []
 --- !u!4 &610514703
 Transform:
   m_ObjectHideFlags: 0
@@ -814,6 +876,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1469020488}
+  - {fileID: 482575692}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -829,6 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e7c5a7edf64f0ba09fe7b7315f2b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <_isEnemyTower>k__BackingField: 0
   <Health>k__BackingField: {fileID: 737846976}
   <Radius>k__BackingField: 2
 --- !u!114 &737846976
@@ -844,6 +908,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 10
+  _healthUIPrefab: {fileID: 6755059469781408493, guid: 54aa9fc0aeff034419ab27373b7b9a82, type: 3}
+  _healthUIPosition: {fileID: 482575692}
+--- !u!1 &775750061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775750062}
+  m_Layer: 0
+  m_Name: HealthUIPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &775750062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775750061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1486416597}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &818595667
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +1004,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1729323863}
+  - {fileID: 1677399743}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -922,6 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e7c5a7edf64f0ba09fe7b7315f2b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <_isEnemyTower>k__BackingField: 1
   <Health>k__BackingField: {fileID: 842622483}
   <Radius>k__BackingField: 2
 --- !u!114 &842622483
@@ -937,6 +1036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 10
+  _healthUIPrefab: {fileID: 6755059469781408493, guid: 54aa9fc0aeff034419ab27373b7b9a82, type: 3}
+  _healthUIPosition: {fileID: 1677399743}
 --- !u!1 &866177983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,6 +1246,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1273775664}
+  - {fileID: 1903020679}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1161,6 +1263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 10
+  _healthUIPrefab: {fileID: 6755059469781408493, guid: 54aa9fc0aeff034419ab27373b7b9a82, type: 3}
+  _healthUIPosition: {fileID: 1903020679}
 --- !u!1 &1098954159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1296,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 634034539}
+  - {fileID: 363485823}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1207,6 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e7c5a7edf64f0ba09fe7b7315f2b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <_isEnemyTower>k__BackingField: 1
   <Health>k__BackingField: {fileID: 1098954162}
   <Radius>k__BackingField: 2
 --- !u!114 &1098954162
@@ -1222,6 +1328,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 10
+  _healthUIPrefab: {fileID: 6755059469781408493, guid: 54aa9fc0aeff034419ab27373b7b9a82, type: 3}
+  _healthUIPosition: {fileID: 363485823}
 --- !u!1 &1118217730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1716,6 +1824,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 737550994}
+  - {fileID: 775750062}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1750,6 +1859,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 10
+  _healthUIPrefab: {fileID: 6755059469781408493, guid: 54aa9fc0aeff034419ab27373b7b9a82, type: 3}
+  _healthUIPosition: {fileID: 775750062}
+--- !u!1 &1534940423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1534940424}
+  m_Layer: 0
+  m_Name: HealthUIPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1534940424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534940423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 545019984}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583306935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,6 +1923,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1916159867}
+  - {fileID: 1619584561}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1796,8 +1939,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e7c5a7edf64f0ba09fe7b7315f2b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <_isEnemyTower>k__BackingField: 0
   <Health>k__BackingField: {fileID: 1583306938}
-  <Radius>k__BackingField: 2
+  <Radius>k__BackingField: 3
 --- !u!114 &1583306938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1811,6 +1955,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Max>k__BackingField: 10
+  _healthUIPrefab: {fileID: 6755059469781408493, guid: 54aa9fc0aeff034419ab27373b7b9a82, type: 3}
+  _healthUIPosition: {fileID: 1619584561}
+--- !u!1 &1619584560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1619584561}
+  m_Layer: 0
+  m_Name: HealthUIPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1619584561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619584560}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1583306936}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1677399742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1677399743}
+  m_Layer: 0
+  m_Name: HealthUIPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1677399743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677399742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 842622481}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694342122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,6 +2343,68 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756755852}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1795227796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795227797}
+  m_Layer: 0
+  m_Name: HealthUIPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1795227797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795227796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 603627479}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1903020678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1903020679}
+  m_Layer: 0
+  m_Name: HealthUIPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903020679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903020678}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1096598311}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1916159866
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,11 +19,14 @@ public class MapInfo : MonoBehaviour {
     }
 #endregion
     
-    [SerializeField] private List<Tower> _enemyTowers = new List<Tower>();
-    [SerializeField] private List<Tower> _playerTowers = new List<Tower>();
+    [field: SerializeField] public List<Tower> _enemyTowers { get; private set; } = new List<Tower>();
+    [field: SerializeField] public List<Tower> _playerTowers { get; private set; } = new List<Tower>();
     
-    [SerializeField] private List<Unit> _enemyUnits = new List<Unit>();
-    [SerializeField] private List<Unit> _playerUnits = new List<Unit>();
+    [field: SerializeField] public List<Unit> _enemyUnits { get; private set; } = new List<Unit>();
+    [field: SerializeField] public List<Unit> _playerUnits { get; private set; } = new List<Unit>();
+
+    public void AddToList<T>(List<T> list, T obj) => list.Add(obj);
+    public void RemoveFromList<T>(List<T> list, T obj) => list.Remove(obj);
 
     public bool TryGetNearestUnit(in Vector3 currentPosition, bool enemy, out Unit unit, out float distance) {
         List<Unit> units = enemy ? _enemyUnits : _playerUnits;

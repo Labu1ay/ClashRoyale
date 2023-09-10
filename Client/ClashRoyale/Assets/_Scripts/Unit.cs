@@ -15,8 +15,13 @@ public class Unit : MonoBehaviour, IHealth {
    private UnitState _attackState;
 
    private UnitState _currentState;
+   private MapInfo _info;
 
    private void Start() {
+      _info = MapInfo.Instance;
+      if(!_isEnemy) _info.AddToList(_info._playerUnits, this);
+      else _info.AddToList(_info._enemyUnits, this);
+      
       _defaultState = Instantiate(_defaultStateSO);
       _defaultState.Constructor(this);
       
@@ -51,6 +56,11 @@ public class Unit : MonoBehaviour, IHealth {
       }
       
       _currentState.Init();
+   }
+
+   private void OnDestroy() {
+      if(!_isEnemy) _info.RemoveFromList(_info._playerUnits, this);
+      else _info.RemoveFromList(_info._enemyUnits, this);
    }
 #if UNITY_EDITOR
    [Space(24)]

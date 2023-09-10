@@ -22,7 +22,7 @@ public class NavMeshChase : UnitState {
     }
 
     public override void Run() {
-        if (_agent == null) {
+        if (_agent == null || _targetUnit == null) {
             _unit.SetState(UnitStateType.Default);
             return;
         }
