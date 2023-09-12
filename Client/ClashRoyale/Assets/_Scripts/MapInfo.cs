@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 
 public class MapInfo : MonoBehaviour {
+    
 #region SingletonOneScene
     public static MapInfo Instance { get; private set; }
 
@@ -13,20 +13,57 @@ public class MapInfo : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        if (Instance == this) {
-            Instance = null;
-        }
+        if (Instance == this) Instance = null;
     }
 #endregion
-    
+
     [SerializeField] private List<Tower> _enemyTowers = new List<Tower>();
     [SerializeField] private List<Tower> _playerTowers = new List<Tower>();
-    
-    [SerializeField] private List<Unit> _enemyUnits = new List<Unit>();
-    [SerializeField] private List<Unit> _playerUnits = new List<Unit>();
 
-    public bool TryGetNearestUnit(in Vector3 currentPosition, bool enemy, out Unit unit, out float distance) {
-        List<Unit> units = enemy ? _enemyUnits : _playerUnits;
+    [SerializeField] private List<Unit> _enemyWalkingUnits = new List<Unit>();
+    [SerializeField] private List<Unit> _playerWalkingUnits = new List<Unit>();
+
+    [SerializeField] private List<Unit> _enemyFlyUnits = new List<Unit>();
+    [SerializeField] private List<Unit> _playerFlyUnits = new List<Unit>();
+
+    private void Start() {
+       SubscribeDestroy(_enemyTowers);
+       SubscribeDestroy(_playerTowers);
+       SubscribeDestroy(_enemyWalkingUnits);
+       SubscribeDestroy(_playerWalkingUnits);
+    }
+
+    public void AddUnit(Unit unit) {
+        List<Unit> list;
+        if (unit._isEnemy) list = unit.Parameters.isFly ? _enemyFlyUnits : _enemyWalkingUnits;
+        else list = unit.Parameters.isFly ? _playerFlyUnits : _playerWalkingUnits;
+
+        AddObjectToList(list, unit);
+    }
+    
+    public bool TryGetNearestAnyUnit(in Vector3 currentPosition, bool enemy, out Unit unit, out float distance) {
+        TryGetNearestWalkingUnit(currentPosition, enemy, out Unit walking, out float walkingDistance);
+        TryGetNearestFlyUnit(currentPosition, enemy, out Unit fly, out float flyDistance);
+
+        if (flyDistance < walkingDistance) {
+            unit = fly;
+            distance = flyDistance;
+        }
+        else {
+            unit = walking;
+            distance = walkingDistance;
+        }
+        return unit;
+    }
+    
+    public bool TryGetNearestWalkingUnit(in Vector3 currentPosition, bool enemy, out Unit unit, out float distance) {
+        List<Unit> units = enemy ? _enemyWalkingUnits : _playerWalkingUnits;
+        unit = GetNearest<Unit>(currentPosition, units, out distance); 
+        return unit;
+    }
+    
+    public bool TryGetNearestFlyUnit(in Vector3 currentPosition, bool enemy, out Unit unit, out float distance) {
+        List<Unit> units = enemy ? _enemyFlyUnits : _playerFlyUnits;
         unit = GetNearest<Unit>(currentPosition, units, out distance); 
         return unit;
     }
@@ -54,6 +91,31 @@ public class MapInfo : MonoBehaviour {
 
         return nearest;
     }
-        
+
+    private void SubscribeDestroy<T>(List<T> objects) where T : IDestroyed{
+        for (int i = 0; i < objects.Count; i++) {
+            T obj = objects[i];
+
+            void RemoveAndUnsubsribe() {
+                RemoveObjectFromList(objects, obj);
+                obj.Destroyed -= RemoveAndUnsubsribe;
+            }
+
+            objects[i].Destroyed += RemoveAndUnsubsribe;
+        }
+    }
     
+    private void AddObjectToList<T>(List<T> list, T obj) where T : IDestroyed{
+        list.Add(obj);
+
+        void RemoveAndUnsubsribe() {
+            RemoveObjectFromList(list, obj);
+            obj.Destroyed -= RemoveAndUnsubsribe;
+        }
+        
+        obj.Destroyed += RemoveAndUnsubsribe;
+    }
+    private void RemoveObjectFromList<T>(List<T> list, T obj) {
+        if (list.Contains(obj)) list.Remove(obj);
+    }
 }

@@ -2,11 +2,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshChase : UnitState {
+public abstract class UnitStateNavMeshChase : UnitState {
     private NavMeshAgent _agent;
-    private bool _targetIsEnemy;
-    private Unit _targetUnit;
-    private float _startAttackDistance = 0f;
+    protected bool _targetIsEnemy;
+    protected Unit _targetUnit;
+    protected float _startAttackDistance = 0f;
 
     public override void Constructor(Unit unit) {
         base.Constructor(unit);
@@ -16,13 +16,17 @@ public class NavMeshChase : UnitState {
         if(_agent == null) Debug.LogError($"На персонаже {unit.name} нет компонента NavMeshAgent");
     }
     public override void Init() {
-        if (MapInfo.Instance.TryGetNearestUnit(_unit.transform.position, _targetIsEnemy, out _targetUnit, out float distance)) {
-            _startAttackDistance = _unit.Parameters.StartAttackDistance + _targetUnit.Parameters.ModelRadius;
-        }
+       FindTargetUnit(out _targetUnit);
+
+       if (_agent == null || _targetUnit == null) {
+           _unit.SetState(UnitStateType.Default);
+           return;
+       }
+       _startAttackDistance = _unit.Parameters.StartAttackDistance + _targetUnit.Parameters.ModelRadius;
     }
 
     public override void Run() {
-        if (_agent == null) {
+        if (_agent == null || _targetUnit == null) {
             _unit.SetState(UnitStateType.Default);
             return;
         }
@@ -37,7 +41,7 @@ public class NavMeshChase : UnitState {
     public override void Finish() {
         _agent.SetDestination(_unit.transform.position);
     }
-    
+
 #if UNITY_EDITOR
     public override void DebugDrawDistance(Unit unit) {
         Handles.color = Color.red;
@@ -45,5 +49,7 @@ public class NavMeshChase : UnitState {
         Handles.color = Color.yellow;
         Handles.DrawWireDisc(unit.transform.position, Vector3.up, unit.Parameters.StopChaseDistance);
     }
+
 #endif
+    protected abstract void FindTargetUnit(out Unit targetUnit);
 }

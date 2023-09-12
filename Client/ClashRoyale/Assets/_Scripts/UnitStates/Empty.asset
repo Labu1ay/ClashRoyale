@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82b4cab6bc1d424a9df0ceed95c9083f, type: 3}
-  m_Name: Warrior_UsualAttack
+  m_Script: {fileID: 11500000, guid: 6a7a784a1ec04c79a3718e3235b446d7, type: 3}
+  m_Name: Empty
   m_EditorClassIdentifier: 
-  _damage: 1.5
-  _delay: 1
