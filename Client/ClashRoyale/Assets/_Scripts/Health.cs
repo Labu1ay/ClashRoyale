@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -16,7 +18,13 @@ public class Health : MonoBehaviour {
         if (_current < 0) _current = 0;
         UpdateHealth?.Invoke(_current);
     }
-    
+
+    public void ApplyDelayDamage(float delay, float damage) => StartCoroutine(DelayDamage(delay, damage));
+
+    private IEnumerator DelayDamage(float delay, float damage) {
+        yield return new WaitForSeconds(delay);
+        ApplyDamage(damage);
+    }
 }
 
 public interface IHealth {

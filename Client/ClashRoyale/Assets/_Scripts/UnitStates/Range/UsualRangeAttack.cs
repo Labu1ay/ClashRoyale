@@ -2,6 +2,7 @@
 
 [CreateAssetMenu(fileName = "_UsualRangeAttack", menuName = "UnitState/UsualRangeAttack")]
 public class UsualRangeAttack : UnitStateAttack {
+    [SerializeField] private Arrow _arrow;
 
     protected override bool TryFindTarget(out float stopAttackDistance) {
         Vector3 unitPosition = _unit.transform.position;
@@ -23,5 +24,15 @@ public class UsualRangeAttack : UnitStateAttack {
 
         stopAttackDistance = 0f;
         return false;
+    }
+
+    protected override void Attack() {
+        Vector3 unitPosition = _unit.transform.position;
+        Vector3 targetPosition = _target.transform.position;
+        
+        Arrow arrow = Instantiate(_arrow, unitPosition, Quaternion.identity);
+        arrow.Init(targetPosition);
+        float delay = Vector3.Distance(unitPosition, targetPosition) / arrow.Speed;
+        _target.ApplyDelayDamage(delay, _damage);
     }
 }
