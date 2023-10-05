@@ -14,8 +14,8 @@ namespace Plugins.Network.Scripts {
             DontDestroyOnLoad(gameObject);
         }
 #endregion
-        
-        public int ID { get; private set; }
+
+        public int ID { get; private set; } = 14;
 
         public void SetID(int id) => ID = id;
     }

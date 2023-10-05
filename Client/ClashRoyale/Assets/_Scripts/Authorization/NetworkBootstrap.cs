@@ -19,7 +19,7 @@ namespace Plugins.Network.Scripts {
             DontDestroyOnLoad(gameObject);
 #endregion
             ServiceRegistration();
-            InstantiateCanvas();
+            //InstantiateCanvas();
             
         }
 
