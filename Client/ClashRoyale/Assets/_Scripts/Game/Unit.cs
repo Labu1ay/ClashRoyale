@@ -19,7 +19,9 @@ public class Unit : MonoBehaviour, IHealth, IDestroyed {
    private UnitState _currentState;
 
 
-   private void Start() {
+   public void Init(bool isEnemy) {
+      _isEnemy = isEnemy;
+      
       _animation.Init(this);
       CreateStates();
 

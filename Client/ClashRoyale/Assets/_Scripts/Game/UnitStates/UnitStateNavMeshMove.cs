@@ -26,6 +26,7 @@ public abstract class UnitStateNavMeshMove : UnitState {
     }
 
     public override void Run() {
+        if(_nearestTower == null) Init();
         if (TryFindTarget(out UnitStateType changeType)) {
             _unit.SetState(changeType);
         }
