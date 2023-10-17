@@ -18,7 +18,7 @@ namespace _Scripts._Multiplayer {
         public void Unsubscribe() {
             MultiplayerManager.Instance.GetReady -= GetReady;
             MultiplayerManager.Instance.StartGame -= StartGame;
-            MultiplayerManager.Instance.CancelStart += CancelStart;
+            MultiplayerManager.Instance.CancelStart -= CancelStart;
         }
 
         private void GetReady() {

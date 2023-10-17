@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using Plugins.Network.Scripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Network = Plugins.Network.Scripts.Network;
 
 namespace _Scripts.Menu {
     public class RatingManager : MonoBehaviour {
@@ -17,7 +15,7 @@ namespace _Scripts.Menu {
             Dictionary<string, string> data = new Dictionary<string, string>() {
                 { "userID", UserInfo.Instance.ID.ToString() }
             };
-            new Network().Post(URLLibrary.MAIN + URLLibrary.GETRATING, data, Success, Error);
+            NetworkBootstrap.Instance.Network.Post(URLLibrary.MAIN + URLLibrary.GETRATING, data, Success, Error);
         }
 
         private void Success(string obj) {

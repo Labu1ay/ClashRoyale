@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design.Serialization;
 using Plugins.Network.Scripts;
 using UnityEngine;
-using Network = Plugins.Network.Scripts.Network;
 
 namespace _Scripts.Menu {
     public class DeckLoader : MonoBehaviour {
@@ -11,16 +9,14 @@ namespace _Scripts.Menu {
         
         [SerializeField] private List<int> _availableCards = new List<int>();
         [SerializeField] private int[] _selectedCards = new int[5];
-
-        private Network _network;
-
+        
         private void Start() {
             StartLoad();
         }
 
         private void StartLoad() {
-            _network = new Network();
-            _network.Post(URLLibrary.MAIN + URLLibrary.GETDECKINFO,
+            
+            NetworkBootstrap.Instance.Network.Post(URLLibrary.MAIN + URLLibrary.GETDECKINFO,
                 new Dictionary<string, string> { { "userID", UserInfo.Instance.ID.ToString() } },
                 SuccessLoad, ErrorLoad);
         }

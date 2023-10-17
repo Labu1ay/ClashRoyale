@@ -188,6 +188,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.veriorpies.parrelsync": {
+      "version": "https://github.com/VeriorPies/ParrelSync.git?path=/ParrelSync",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "141b4e1e31966242a6fb7c495b52ac3d1221bc75"
+    },
     "io.colyseus.sdk": {
       "version": "https://github.com/Luxor315/Colyseus_04.10.2022.git",
       "depth": 0,

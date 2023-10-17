@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using Plugins.Network.Scripts;
-using TMPro;
 using UnityEngine;
-using Network = Plugins.Network.Scripts.Network;
 using System.Linq;
 
 namespace _Scripts.Menu {
     public class DeckManager : MonoBehaviour {
         [SerializeField] private GameObject _lockScreenCanvas;
         
-        [SerializeField] private Card[] _cards;
+        [field: SerializeField] public CardsLibrary library { get; private set; }
         [SerializeField] private List<Card> _availableCards = new List<Card>();
         [SerializeField] private List<Card> _selectedCards = new List<Card>();
 
@@ -27,19 +25,16 @@ namespace _Scripts.Menu {
 
 #region Editor
 #if UNITY_EDITOR
-        [SerializeField] private AvailableDeckUI _availableDeckUI;
-        private void OnValidate() {
-            _availableDeckUI.SetAllCardsCount(_cards);
-        }
+        [field: SerializeField] public AvailableDeckUI _availableDeckUI { get; private set; }
 #endif
 #endregion
 
         public void Init(List<int> availablesCardIndexes, int[] selectedCardIndexes) {
             for (int i = 0; i < availablesCardIndexes.Count; i++)
-                _availableCards.Add(_cards[availablesCardIndexes[i]]);
+                _availableCards.Add(library.cards[availablesCardIndexes[i]]);
 
             for (int i = 0; i < selectedCardIndexes.Length; i++)
-                _selectedCards.Add(_cards[selectedCardIndexes[i]]);
+                _selectedCards.Add(library.cards[selectedCardIndexes[i]]);
 
             UpdateAvailable?.Invoke(AvailableCards, SelectedCards);
             UpdateSelected?.Invoke(SelectedCards);
@@ -67,7 +62,7 @@ namespace _Scripts.Menu {
 
                 UpdateSelected?.Invoke(SelectedCards);
             };
-            new Network().Post(uri, data, (s) => SendSuccess(s, success), Error);
+            NetworkBootstrap.Instance.Network.Post(uri, data, (s) => SendSuccess(s, success), Error);
             
         }
 
@@ -86,19 +81,6 @@ namespace _Scripts.Menu {
             _lockScreenCanvas.SetActive(false);
         }
 
-        public bool TryGetDeck(string[] cardsIDs, out Dictionary<string, Card> deck) {
-            deck = new Dictionary<string, Card>();
-            for (int i = 0; i < cardsIDs.Length; i++) {
-                if (int.TryParse(cardsIDs[i], out int id) == false || id == 0) return false;
-                Card card = _cards.FirstOrDefault(c => c.ID == id);
-                if (card == null) return false;
-                
-                deck.Add(cardsIDs[i], card);
-            }
-
-            return true;
-        }
-
         [System.Serializable]
         private class Wrapper {
             public int[] IDs;
@@ -108,14 +90,5 @@ namespace _Scripts.Menu {
             }
 
         }
-    }
-
-    [Serializable]
-    public class Card {
-        [field: SerializeField] public string Name { get; private set; }
-        [field: SerializeField] public int ID { get; private set; }
-        [field: SerializeField] public Sprite Sprite { get; private set; }
-        [field: SerializeField] public Unit Unit { get; private set; }
-        
     }
 }

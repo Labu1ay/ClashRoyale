@@ -458,6 +458,51 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 892732210666764269, guid: 543c1d6785c14cc47b72e7622daf609d, type: 3}
   m_PrefabInstance: {fileID: 156103913}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &701004381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701004383}
+  - component: {fileID: 701004382}
+  m_Layer: 0
+  m_Name: AuthorizationHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &701004382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701004381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0222c336777d4cd68470a3f3de4c0ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuSceneName: Assets/_Scenes/Menu.unity
+--- !u!4 &701004383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701004381}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1192637800
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +720,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1855233003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1855233005}
+  - component: {fileID: 1855233004}
+  m_Layer: 0
+  m_Name: ServerInitializer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1855233004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855233003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c2e642f05a4fdf9591f8aad59e80f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuScena: Assets/_Scenes/Menu.unity
+  _offlineServerScena: Assets/_Scenes/Authorization.unity
+  _customNetworkManagerPrefab: {fileID: 6535391112163972027, guid: 7eb37cdadeb3df04caaa497971bb3c68, type: 3}
+--- !u!4 &1855233005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855233003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2963412245678994565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -688,7 +780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963412247336778613, guid: b9bb2c5ecb0742f46a2de4ccce97d859, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2963412247336778613, guid: b9bb2c5ecb0742f46a2de4ccce97d859, type: 3}
       propertyPath: m_LocalPosition.x
@@ -741,7 +833,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6322900990135775110, guid: c2c6855c5279483478acbaeb751a8b27, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6322900990135775110, guid: c2c6855c5279483478acbaeb751a8b27, type: 3}
       propertyPath: m_LocalPosition.x

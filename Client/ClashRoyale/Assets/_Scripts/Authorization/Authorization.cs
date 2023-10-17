@@ -10,6 +10,7 @@ namespace Plugins.Network.Scripts {
         private string _password;
 
         public event Action Error; 
+        public event Action Success; 
 
         public void SetLogin(string login) {
             _login = login;
@@ -30,11 +31,11 @@ namespace Plugins.Network.Scripts {
                 { LOGIN, _login },
                 { PASSWORD, _password }
             };
-            NetworkBootstrap.Instance.Network.Post(uri, data, Success, ErrorMessage);
+            NetworkBootstrap.Instance.Network.Post(uri, data, SuccessMessage, ErrorMessage);
             //Network.Instance.Post(uri, data, Success, ErrorMessage);
         }
 
-        private void Success(string data) {
+        private void SuccessMessage(string data) {
             string[] result = data.Split('|');
             if (result.Length < 2 || result[0] != "ok") {
                 ErrorMessage("Ответ с сервера пришел вот такой " + data);
@@ -44,6 +45,7 @@ namespace Plugins.Network.Scripts {
             if (int.TryParse(result[1], out int id)) {
                 UserInfo.Instance.SetID(id);
                 Debug.Log("Успешный вход. ID = " + id);
+                Success?.Invoke();
             }
             else {
                 ErrorMessage($"Не удалось расспарсить \"{result[1]}\" в INT. Полный ответ вот такой: {data}");
